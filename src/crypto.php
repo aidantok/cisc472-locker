@@ -13,12 +13,6 @@ function verify_password(string $password, string $stored): bool
     return hash_equals($stored, hash_password($password));
 }
 
-function reset_token_for(string $email, ?string $day = null): string
-{
-    $day = $day ?? gmdate("Y-m-d");
-    return sha1(strtolower($email) . "|" . $day);
-}
-
 function issue_reset_token(string $email): string
 {
     /*
