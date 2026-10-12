@@ -89,7 +89,7 @@ if ($path === "/reset" && $method === "POST") {
         render("reset", ["title" => "Choose a new password", "email" => $email, "token" => $token, "error" => "Password needs at least eight characters."]);
     }
     if (!consume_reset_token($email, $token)) {
-        render("reset", ["title" => "Choose a new password", "email" => $email, "token" => $token, "error" => "That reset token is not valid for this address today."]);
+        render("reset", ["title" => "Choose a new password", "email" => $email, "token" => $token, "error" => "That reset token is invalid or has already been used."]);
     }
     set_user_password($email, $password);
     render("login", ["title" => "Sign in", "email" => $email, "error" => "Password updated. Sign in."]);
